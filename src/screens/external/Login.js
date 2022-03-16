@@ -1,8 +1,7 @@
 import { ScrollView, Platform, StyleSheet, Text, View, Image, KeyboardAvoidingView, ImageBackground } from 'react-native'
 import React from 'react'
-import { BACKGROUNDIMAGE1, PPLogo } from '../../assets/Images/index'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { BACKGROUNDIMAGE1 } from '../../assets/Images'
+
 import InputBox from '../../components/InputBox'
 import SimpleButton from '../../components/Button'
 import Header from '../../components/Header'
@@ -10,12 +9,11 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 const Login1 = (props) => {
 
-    console.log(props, "<------------Login Screen")
     return (
-
         // <KeyboardAvoidingView style={{ flex: 1, }} keyboardVerticalOffset={50} >
 
-        <KeyboardAvoidingView styles={styles.container} behavior={Platform.OS === "ios" ? "padding" : null}><ScrollView >
+        <KeyboardAvoidingView><ScrollView >
+
             <Header />
             <View style={{ flex: 1 }}>
                 <ImageBackground source={BACKGROUNDIMAGE1} style={{ width: wp('100%'), height: hp('100%'), }}  >
@@ -24,12 +22,13 @@ const Login1 = (props) => {
 
                         <InputBox inputTitle={"Username/Email"} />
 
-                        <InputBox inputTitle={"Password"} />
+                        <InputBox
+                            inputTitle={"Password"}
+                            icon={<svg data-testid="DeleteIcon"></svg>}
+                        />
 
+                        <Text style={[styles.textStyle, { marginTop: 25, marginBottom: 15, fontSize: 14, color: "#FFB700", }]}  > Forget Password</Text>
 
-
-                        <Text style={[styles.textStyle, { fontSize: 14, color: "#FFB700", marginTop: 10 }]}  > Forget Password</Text>
-                        <Text></Text>
                         <SimpleButton
                             buttonStyle={[styles.simpleButton, {}]}
                             titleStyle={[styles.buttonTitle]}
@@ -43,6 +42,7 @@ const Login1 = (props) => {
                                 console.log("Hello")
                             }}
                             title="Login with face ID"
+                            disableStatus={true}
                         />
                         <Text style={
                             [styles.textStyle, { fontFamily: "Spartan-Medium", color: "#717990" }]
@@ -55,10 +55,6 @@ const Login1 = (props) => {
                             </Text>
                         </Text>
                     </View>
-
-
-
-
                 </ImageBackground>
             </View>
         </ScrollView>
