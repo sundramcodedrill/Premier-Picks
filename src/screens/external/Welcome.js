@@ -14,7 +14,7 @@ const Stack = createStackNavigator()
 const { width, height } = Dimensions.get("screen")
 const Welcome = (props) => {
 
-    console.log(props, "<------------Login Screen")
+
     return (
         <View style={styles.mainview}>
 
@@ -39,7 +39,7 @@ const Welcome = (props) => {
                     buttonStyle={[styles.simpleButton]}
                     titleStyle={[styles.buttonTitle]}
                     onPress={() => {
-                        console.log("Hello")
+                        props.navigation.navigate('Register');
                     }} title="Create an account"
                 />
             </ImageBackground >

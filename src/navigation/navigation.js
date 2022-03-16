@@ -10,12 +10,10 @@ const Stack = createStackNavigator()
 const navigation = () => {
     return (
         <Stack.Navigator
-            initialRouteName='Welcome'
+            initialRouteName='Splash'
             screenOptions={{
-                cardStyleInterpolator: CardStyleInterpolators.forBottomSheetAndroid,
                 headerShown: false
             }}>
-
             <Stack.Screen name='Login' component={Login} />
             <Stack.Screen name='Splash' component={Splash} />
             <Stack.Screen name='Welcome' component={Welcome} />
