@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
 // import { Navigation } from '../../navigation';
 import { Login } from './login'
-import navigation from '../../navigation/navigation';
+import navigation from '../../navigation/Navigation';
 
 const Stack = createStackNavigator()
 const { width, height } = Dimensions.get("screen")
