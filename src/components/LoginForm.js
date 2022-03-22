@@ -6,7 +6,6 @@ import { SimpleButton } from './Button'
 const LoginForm = () => {
     return (
         <View>
-
             <InputBox inputTitle={"Username/Email"} />
             <InputBox inputTitle={"Password"} />
             <Text></Text>

@@ -14,7 +14,7 @@ const Splash = (props) => {
         setTimeout(async () => {
             props.navigation.navigate('Welcome')
             //setIsFirstLaunch(false)
-        }, 3000)
+        }, 1000)
     }
     useEffect(() => {
         Timeout();

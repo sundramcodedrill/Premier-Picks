@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, TextInput, Text, View, KeyboardAvoidingView, ImageBackground, Image, Dimensions, Input, FormInput } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, TextInput, Text, View, KeyboardAvoidingView, ImageBackground, Image, Dimensions, Input, FormInput } from 'react-native'
 // import { Header, SimpleButton, InputBox } from '../../components'
 import { Header, SimpleButton, InputBox, AccountTexts } from '../../components/Index'
 import { RegisterBackground, Progress, Vector } from '../../assets/Images/index'
@@ -6,7 +6,8 @@ import React, { useState } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-const Register = (props) => {
+
+const RegisterTwo = (props) => {
 
     const [data, setData] = useState("")
     const [borderColorHook, setBorderColorHook] = useState("#ff0011")
@@ -36,7 +37,7 @@ const Register = (props) => {
                             <Text style={styles.stepStyle}> 1 </Text>
                             {/* RoundCheck  "#717990"  #00C467*/}
                             <View style={{
-                                width: 16, height: 16, backgroundColor: "#717990", justifyContent: "center", alignItems: "center", position: "absolute", left: wp("7%"), top: hp("0.5%"), borderRadius: 8
+                                width: 16, height: 16, backgroundColor: "#00C467", justifyContent: "center", alignItems: "center", position: "absolute", left: wp("7 % "), top: hp("0.5% "), borderRadius: 8
                             }}>
                                 <Image source={Vector} style={{ width: 10, height: 10, }} />
                             </View>
@@ -51,11 +52,14 @@ const Register = (props) => {
                     </View>
 
 
-                    {/* Personal Details */}
-                    <View style={{ marginTop: hp("5%") }}>
-                        <Text style={[styles.textStyle, { fontSize: 16, fontWeight: "500", fontFamily: "Rubik-Medium", marginLeft: 16, marginBottom: 20, marginTop: 48 }]}>Personal Details</Text>
+                    {/* Address Details */}
+                    <View style={{ marginTop: hp("5%"), flexDirection: "row", justifyContent: "space-between" }}>
+                        <Text style={[styles.textStyle, { fontSize: 16, fontWeight: "500", fontFamily: "Rubik-Medium", marginLeft: 16, marginBottom: 20, marginTop: 20 }]}>Address</Text>
+                        <TouchableOpacity onPress={() => (props.navigation.navigate("Register"))}>
+                            <Text style={[styles.textStyle, { textAlign: "right", fontSize: 10, fontWeight: "500", fontFamily: "Spartan-Medium", marginLeft: 16, marginRight: 16, color: "#FFB700", marginBottom: 20, marginTop: 20 }]}>Back to Step1</Text>
+                        </TouchableOpacity>
                     </View>
-                    {/* Personal Details Closed */}
+                    {/* Address Closed */}
 
                     {/* Form Started */}
 
@@ -80,10 +84,30 @@ const Register = (props) => {
                     {/* Input Box UserName CLOSED Here*/}
 
 
+                    {/* DOB */}
+                    <View style={{ marginLeft: 16, marginBottom: 10 }}>
+                        <Text style={[styles.textStyle, { fontSize: 16, fontWeight: "500", fontFamily: "Rubik-Medium" }]}>DOB</Text>
+                    </View>
+
+                    <View style={{ flexDirection: "row", marginLeft: 10, marginBottom: 10 }}>
+                        <InputBox inputTitle="DD" customTextInputStyle={{
+                            width: wp("26%"), marginRight: 0, marginLeft: 0
+                        }} />
+                        <InputBox inputTitle="MM" customTextInputStyle={{ width: wp("26%"), marginLeft: 0, marginRight: 0 }} />
+                        <InputBox inputTitle="YY/YY" customTextInputStyle={{ width: wp("29%"), marginLeft: 0, marginRight: 0 }} />
+                    </View>
+
+                    <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
+                        <InputBox inputTitle="Password" />
+                    </View>
+
+                    < View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
+                        <InputBox inputTitle="Confirm Password" secureText={true} />
+                    </View>
 
                     {/* Next Step */}
 
-                    < SimpleButton title="Next Step" onPress={() => (props.navigation.navigate("RegisterStep2"))} />
+                    < SimpleButton title="Next Step" />
 
                     {/* Next Step CLOSE */}
 
@@ -103,7 +127,7 @@ const Register = (props) => {
     )
 }
 
-export default Register
+export default RegisterTwo
 
 const styles = StyleSheet.create({
 
@@ -113,7 +137,7 @@ const styles = StyleSheet.create({
     },
     stepStyle: {
         borderWidth: 2,
-        borderColor: "#717990",
+        borderColor: "#fff",
         borderRadius: 40 / 2,
         width: 40,
         height: 40,
@@ -121,7 +145,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         alignItems: "center",
         padding: 8,
-        color: "#717990", fontSize: 16, borderColor: "#717990",
+        color: "#fff", fontSize: 16
     },
 
     textStyle2: {

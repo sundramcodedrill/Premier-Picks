@@ -1,26 +1,51 @@
-import { StyleSheet, View, TextInput, Text } from 'react-native'
+import { StyleSheet, View, TextInput, Text, Image, TouchableOpacity } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import React, { useState } from 'react'
+
+import { Show, Hide } from '../assets/Images'
+
 
 
 
 const InputBox = (props) => {
     // { }
-    const { inputTitle, disableOrNot, icon, customStyle, customTextInputStyle } = props
+
+
+    const { inputTitle, disableOrNot, icon, customStyle, customTextInputStyle, secureText, showHideprop } = props
+    const [showHide, setShowHide] = useState(true)
     const [data, setData] = useState("")
+    const [isFocused, setIsFocused] = useState(false);
     return (
         <View style={[styles.container, customStyle]}>
-            <View style={{ alignItems: "center", marginLeft: 8 }}>
-                <TextInput
-                    style={[styles.textInputStyle, customTextInputStyle]}
-                    value={data}
-                    onChangeText={(data) => { setData(data) }}
-                />
+            <View style={{ alignItems: "center", marginLeft: 8, }}>
+                <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                    <TextInput
+                        style={[styles.textInputStyle, customTextInputStyle, isFocused && { borderColor: "#4E21C9", }]}
+                        secureTextEntry={showHide}
+                        value={data}
+
+                        selectionColor={'#4E21C9'}
+                        onChangeText={(data) => { setData(data) }}
+                        onFocus={() => {
+                            setIsFocused(true)
+                        }}
+                        onBlur={() => { setIsFocused(false) }}
+                    />
+                    {inputTitle == "Password" || inputTitle == "Confirm Password" ?
+
+                        <TouchableOpacity onPress={() => setShowHide(!showHide)}
+                            style={{ padding: 10, position: 'absolute', right: 20, zIndex: 1 }}
+                        >
+                            <Image style={{}} source={showHide ? Show : Hide} resizeMode='contain' />
+                        </TouchableOpacity> : null
+                    }
+                </View>
+
             </View>
             <View style={{ position: "absolute", top: -14, left: wp("8%"), }}>
-                <Text style={{ backgroundColor: "#070417", color: "#707C8B", padding: 5 }}>{inputTitle}</Text>
+                <Text style={{ backgroundColor: "#070417", opacity: 5, color: "#707C8B", padding: 5 }}>{inputTitle}</Text>
             </View>
-        </View>
+        </View >
     )
 }
 
@@ -35,10 +60,10 @@ const styles = StyleSheet.create({
         width: wp("90%"),
         borderColor: "#707C8B",
         padding: 15,
-        color: "#707C8B"
-        , marginLeft: 10,
+        color: "#707C8B",
+        marginLeft: 10,
         marginRight: 10,
-        backgroundColor: "#070417",
+        // backgroundColor: "#070417",
         borderRadius: 20,
         borderWidth: 1,
     }

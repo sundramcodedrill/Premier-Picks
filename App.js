@@ -5,14 +5,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Navigation } from './src/navigation';
+import Navigation from "./src/navigation/Navigation"
 
 const App = () => {
+
   return (
+
     <NavigationContainer>
-      {/* <Splash /> */}
+
       <Navigation />
+
     </NavigationContainer>
+
+
+
   )
 }
 

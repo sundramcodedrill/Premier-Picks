@@ -11,3 +11,7 @@ export const RegisterBackground = require('./RegisterBackground.png');
 export const Progress = require('./Progress.png');
 
 export const Vector = require('./Vector.png');
+
+export const Show = require('./Show.png');
+
+export const Hide = require('./hide.png');
