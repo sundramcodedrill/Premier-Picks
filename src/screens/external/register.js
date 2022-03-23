@@ -13,93 +13,116 @@ const Register = (props) => {
     return (
         // Main View Started
 
+        <View style={{ flex: 1 }}>
+            <ImageBackground
+                source={RegisterBackground}
+            // style={{ width: Dimensions.get('window').width }}
 
-        <ImageBackground source={RegisterBackground} style={{ width: wp("100%"), height: Dimensions.get('window').height }} >
+            >
 
-            <Header />
+                <Header />
 
+                <ScrollView>
+                    <KeyboardAwareScrollView style={{ backgroundColor: 'transparent' }} >
 
-            <KeyboardAwareScrollView keyboardShouldPersistTaps={'handled'} onKeyboardWillShow={(Object) => {
-                console.log('Keyboard event', frames)
-            }}>
-                <ScrollView style={{ flex: 1 }}>
-                    {/* Registeration Title View */}
-                    <View style={{ margin: 15, }}>
-                        <Text style={[styles.textStyle, { fontSize: 28, fontWeight: "500", fontFamily: "Rubik-Medium" }]}>Register</Text>
-                        <Text style={[styles.textStyle, { fontFamily: "Rubik-Regular", fontSize: 14, fontWeight: "100", }]}>Enter all details below to create your account</Text>
-                    </View>
-
-                    {/* Registeration Title View Closed */}
-
-                    <View style={{ flex: 1, marginTop: hp("5%"), flexDirection: "row", justifyContent: "center", }}>
-                        <View style={{ flexDirection: "row", }}>
-                            <Text style={styles.stepStyle}> 1 </Text>
-                            {/* RoundCheck  "#717990"  #00C467*/}
-                            <View style={{
-                                width: 16, height: 16, backgroundColor: "#717990", justifyContent: "center", alignItems: "center", position: "absolute", left: wp("7%"), top: hp("0.5%"), borderRadius: 8
-                            }}>
-                                <Image source={Vector} style={{ width: 10, height: 10, }} />
-                            </View>
-                            {/* RoundCheck CLOSED */}
-
-                            {/* Progress Ion + 2 Text */}
-                            <Image source={Progress} style={{ marginTop: 20, marginLeft: 8, marginRight: 8 }} />
-                            <Text style={[styles.stepStyle, { color: "#231D43", borderColor: "#231D43" }]}>2</Text>
-
-                            {/* Progress Ion + 2 Text  CLOSED*/}
+                        {/* Registeration Title View */}
+                        <View style={{ margin: 15, }}>
+                            <Text style={[styles.textStyle, { fontSize: 28, fontWeight: "500", fontFamily: "Rubik-Medium" }]}>Register</Text>
+                            <Text style={[styles.textStyle, { fontFamily: "Rubik-Regular", fontSize: 14, fontWeight: "100", }]}>Enter all details below to create your account</Text>
                         </View>
-                    </View>
+
+                        {/* Registeration Title View Closed */}
+
+                        <View style={{ flex: 1, marginTop: hp("5%"), flexDirection: "row", justifyContent: "center", }}>
+                            <View style={{ flexDirection: "row", }}>
+                                <Text style={styles.stepStyle}> 1 </Text>
+                                {/* RoundCheck  "#717990"  #00C467*/}
+                                <View style={{
+                                    width: 16, height: 16, backgroundColor: "#717990", justifyContent: "center", alignItems: "center", position: "absolute", left: wp("7%"), top: hp("0.5%"), borderRadius: 8
+                                }}>
+                                    <Image source={Vector} style={{ width: 10, height: 10, }} />
+                                </View>
+                                {/* RoundCheck CLOSED */}
+
+                                {/* Progress Ion + 2 Text */}
+                                <Image source={Progress} style={{ marginTop: 20, marginLeft: 8, marginRight: 8 }} />
+                                <Text style={[styles.stepStyle, { color: "#231D43", borderColor: "#231D43" }]}>2</Text>
+
+                                {/* Progress Ion + 2 Text  CLOSED*/}
+                            </View>
+                        </View>
 
 
-                    {/* Personal Details */}
-                    <View style={{ marginTop: hp("5%") }}>
-                        <Text style={[styles.textStyle, { fontSize: 16, fontWeight: "500", fontFamily: "Rubik-Medium", marginLeft: 16, marginBottom: 20, marginTop: 48 }]}>Personal Details</Text>
-                    </View>
-                    {/* Personal Details Closed */}
+                        {/* Personal Details */}
+                        <View style={{ marginTop: hp("5%") }}>
+                            <Text style={[styles.textStyle, { fontSize: 16, fontWeight: "500", fontFamily: "Rubik-Medium", marginLeft: 16, marginBottom: 20, marginTop: 48 }]}>Personal Details</Text>
+                        </View>
+                        {/* Personal Details Closed */}
 
-                    {/* Form Started */}
-
-
-                    {/* Input Box First Name*/}
-                    <View style={{ marginBottom: 10 }}>
-                        <InputBox inputTitle="First Name" />
-                    </View>
-                    {/* Input Box  CLOSED Here*/}
-
-                    {/* Input Box Last Name*/}
-                    <View style={{ marginBottom: 10 }}>
-                        <InputBox inputTitle="Last Name" />
-                    </View>
-                    {/* Input Box Last Name CLOSED Here*/}
+                        {/* Form Started */}
 
 
-                    {/* Input Box UserName*/}
-                    <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                        <InputBox inputTitle="User Name" />
-                    </View>
-                    {/* Input Box UserName CLOSED Here*/}
+                        {/* Input Box First Name*/}
+                        <View style={{ marginBottom: 10 }}>
+                            <InputBox inputTitle="First Name" />
+                        </View>
+                        {/* Input Box  CLOSED Here*/}
+
+                        {/* Input Box Last Name*/}
+                        <View style={{ marginBottom: 10 }}>
+                            <InputBox inputTitle="Last Name" />
+                        </View>
+                        {/* Input Box Last Name CLOSED Here*/}
+
+
+                        {/* Input Box UserName*/}
+                        <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
+                            <InputBox inputTitle="User Name" />
+                        </View>
+                        {/* Input Box UserName CLOSED Here*/}
+
+                        {/* DOB */}
+                        <View style={{ marginLeft: 16, marginBottom: 10 }}>
+                            <Text style={[styles.textStyle, { fontSize: 16, fontWeight: "500", fontFamily: "Rubik-Medium" }]}>DOB</Text>
+                        </View>
+
+                        <View style={{ flexDirection: "row", marginLeft: 10, marginBottom: 10 }}>
+                            <InputBox inputTitle="DD" customTextInputStyle={{
+                                width: wp("26%"), marginRight: 0, marginLeft: 0
+                            }} />
+                            <InputBox inputTitle="MM" customTextInputStyle={{ width: wp("26%"), marginLeft: 0, marginRight: 0 }} />
+                            <InputBox inputTitle="YY/YY" customTextInputStyle={{ width: wp("29%"), marginLeft: 0, marginRight: 0 }} />
+                        </View>
+
+                        <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
+                            <InputBox inputTitle="Password" />
+                        </View>
+
+                        < View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
+                            <InputBox inputTitle="Confirm Password" secureText={true} />
+                        </View>
+
+                        {/* Next Step */}
+
+                        < SimpleButton title="Next Step" onPress={() => (props.navigation.navigate("RegisterStep2"))} />
+
+                        {/* Next Step CLOSE */}
 
 
 
-                    {/* Next Step */}
+                        < AccountTexts text="Already have account? " linkText="Sign In" screenName="Login" onPress={() => {
+                            props.navigation.navigate('Login')
+                        }} />
 
-                    < SimpleButton title="Next Step" onPress={() => (props.navigation.navigate("RegisterStep2"))} />
-
-                    {/* Next Step CLOSE */}
-
+                        <View style={{ marginBottom: 250 }}>
+                        </View>
 
 
-                    < AccountTexts text="Already have account? " linkText="Sign In" screenName="Login" onPress={() => {
-                        props.navigation.navigate('Login')
-                    }} />
 
-                    <View style={{ marginBottom: 250 }}>
-                    </View>
-
-                </ScrollView >
-            </KeyboardAwareScrollView >
-        </ImageBackground >
-
+                    </KeyboardAwareScrollView >
+                </ScrollView>
+            </ImageBackground >
+        </View >
     )
 }
 

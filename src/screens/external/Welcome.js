@@ -1,14 +1,9 @@
 import { StyleSheet, TouchableOpacity, Text, View, ImageBackground, Image, Button, Dimensions } from 'react-native';
 import React from 'react';
-import LinearGradient from 'react-native-linear-gradient';
 import SimpleButton from '../../components/Button';
 import { BACKGROUNDIMAGE, LOGO } from '../../assets/Images/index'
-import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
-// import { Navigation } from '../../navigation';
-import { Login } from './login'
-import navigation from '../../navigation/Navigation';
 
 const Stack = createStackNavigator()
 const { width, height } = Dimensions.get("screen")

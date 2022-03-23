@@ -10,105 +10,105 @@ const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 import { getFocusedRouteNameFromRoute, useRoute } from '@react-navigation/native';
 
-const TabNavigator = (props) => {
+// const TabNavigator = (props) => {
 
-    //console.log(props.route.screeName)
-    return (
-        <Tab.Navigator
-            screenOptions={{
-                headerShown: false,
-                tabBarStyle: {
-                    backgroundColor: "#0B0B1F",
-                    borderTopWidth: 0,
-                    height: 50,
-                },
-                tabBarHideOnKeyboard: true,
-                tabBarActiveTintColor: '#4E21C9',
-                tabBarInactiveTintColor: 'white',
+//     //console.log(props.route.screeName)
+//     return (
+//         <Tab.Navigator
+//             screenOptions={{
+//                 headerShown: false,
+//                 tabBarStyle: {
+//                     backgroundColor: "#0B0B1F",
+//                     borderTopWidth: 0,
+//                     height: 50,
+//                 },
+//                 tabBarHideOnKeyboard: true,
+//                 tabBarActiveTintColor: '#4E21C9',
+//                 tabBarInactiveTintColor: 'white',
 
-            }}>
-            {/*
+//             }}>
+//             {/*
 
-{
-                    tabBarIcon: () => (
-                        <Feather name="users" size={20} />
-                    ),
-                    tabBarActiveTintColor: '#4E21C9',
-                    tabBarInactiveTintColor: 'white',
+// {
+//                     tabBarIcon: () => (
+//                         <Feather name="users" size={20} />
+//                     ),
+//                     tabBarActiveTintColor: '#4E21C9',
+//                     tabBarInactiveTintColor: 'white',
 
-                }
-        */}
+//                 }
+//         */}
 
-            <Tab.Screen name="My Groups"
-                options={({ route }) => ({
+//             <Tab.Screen name="My Groups"
+//                 options={({ route }) => ({
 
-                    tabBarStyle: {
-                        // display: getTabBarVisibility(route),
-                        backgroundColor: "#0B0B1F",
-                    },
-                    tabBarIcon: ({ color, size }) => (
-                        <Feather name="users" color={color} size={size} />
-                    ),
+//                     tabBarStyle: {
+//                         // display: getTabBarVisibility(route),
+//                         backgroundColor: "#0B0B1F",
+//                     },
+//                     tabBarIcon: ({ color, size }) => (
+//                         <Feather name="users" color={color} size={size} />
+//                     ),
 
-                })
-                }
-                component={Register} />
-            <Tab.Screen name="Join Group"
-                options={({ route }) => ({
+//                 })
+//                 }
+//                 component={Register} />
+//             <Tab.Screen name="Join Group"
+//                 options={({ route }) => ({
 
-                    tabBarStyle: {
-                        // display: getTabBarVisibility(route),
-                        backgroundColor: "#0B0B1F",
-                    },
-                    tabBarIcon: ({ color, size }) => (
-                        <Feather name="user-plus" color={color} size={size} />
-                    ),
+//                     tabBarStyle: {
+//                         // display: getTabBarVisibility(route),
+//                         backgroundColor: "#0B0B1F",
+//                     },
+//                     tabBarIcon: ({ color, size }) => (
+//                         <Feather name="user-plus" color={color} size={size} />
+//                     ),
 
-                })
-                }
-                component={Splash} />
-            <Tab.Screen name="Create"
+//                 })
+//                 }
+//                 component={Splash} />
+//             <Tab.Screen name="Create"
 
-                options={({ route }) => ({
-                    tabBarStyle: {
+//                 options={({ route }) => ({
+//                     tabBarStyle: {
 
-                        // display: getTabBarVisibility(route),
-                        backgroundColor: "#0B0B1F",
-                    },
-                    tabBarIcon: ({ color, size }) => (
-                        <Feather name="edit-3" color={color} size={size} />
-                    ),
-
-
-                })
-                }
-                component={Welcome} />
-            <Tab.Screen name="Rules"
-                options={({ route }) => (
-                    {
-                        tabBarStyle: {
-                            // display: getTabBarVisibility(route),
-                            backgroundColor: "#0B0B1F",
-                        },
-                        tabBarIcon: ({ color, size }) => (
-
-                            <Feather name="book" color={color} size={size} />
-                        ),
-                    })
-                }
-                component={Login}
-            />
-
-        </Tab.Navigator >
-    );
-}
+//                         // display: getTabBarVisibility(route),
+//                         backgroundColor: "#0B0B1F",
+//                     },
+//                     tabBarIcon: ({ color, size }) => (
+//                         <Feather name="edit-3" color={color} size={size} />
+//                     ),
 
 
-const navigation = (props) => {
+//                 })
+//                 }
+//                 component={Welcome} />
+//             <Tab.Screen name="Rules"
+//                 options={({ route }) => (
+//                     {
+//                         tabBarStyle: {
+//                             // display: getTabBarVisibility(route),
+//                             backgroundColor: "#0B0B1F",
+//                         },
+//                         tabBarIcon: ({ color, size }) => (
+
+//                             <Feather name="book" color={color} size={size} />
+//                         ),
+//                     })
+//                 }
+//                 component={Login}
+//             />
+
+//         </Tab.Navigator >
+//     );
+// }
+
+
+const Navigation = (props) => {
 
     return (
         <Stack.Navigator
-            initialRouteName='RegisterStep2'
+            initialRouteName='Splash'
             screenOptions={{
                 headerShown: false
             }}>
@@ -128,5 +128,5 @@ const navigation = (props) => {
 }
 
 
-export default navigation
-export { TabNavigator as Tb }
+export default Navigation
+//export { TabNavigator as Tb }

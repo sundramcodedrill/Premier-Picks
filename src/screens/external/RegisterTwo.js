@@ -1,16 +1,16 @@
 import { ScrollView, StyleSheet, TouchableOpacity, TextInput, Text, View, KeyboardAvoidingView, ImageBackground, Image, Dimensions, Input, FormInput } from 'react-native'
-// import { Header, SimpleButton, InputBox } from '../../components'
 import { Header, SimpleButton, InputBox, AccountTexts } from '../../components/Index'
 import { RegisterBackground, Progress, Vector } from '../../assets/Images/index'
 import React, { useState } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
-
+import CheckBox from '@react-native-community/checkbox';
+// import { Checkbox } from 'react-native-paper';
 const RegisterTwo = (props) => {
 
     const [data, setData] = useState("")
-    const [borderColorHook, setBorderColorHook] = useState("#ff0011")
+    const [checked, setChecked] = useState(false);
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     return (
         // Main View Started
 
@@ -64,50 +64,74 @@ const RegisterTwo = (props) => {
                     {/* Form Started */}
 
 
-                    {/* Input Box First Name*/}
+                    { /* House Number*/}
                     <View style={{ marginBottom: 10 }}>
-                        <InputBox inputTitle="First Name" />
+                        <InputBox inputTitle="*House Number" />
                     </View>
-                    {/* Input Box  CLOSED Here*/}
+                    {/* Input Box *House Number CLOSED Here*/}
 
-                    {/* Input Box Last Name*/}
+                    {/* Input Box Street Name*/}
                     <View style={{ marginBottom: 10 }}>
-                        <InputBox inputTitle="Last Name" />
+                        <InputBox inputTitle="*Street" />
                     </View>
-                    {/* Input Box Last Name CLOSED Here*/}
+                    {/* Input Box Street CLOSED Here*/}
 
-
-                    {/* Input Box UserName*/}
+                    {/* Town */}
                     <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                        <InputBox inputTitle="User Name" />
-                    </View>
-                    {/* Input Box UserName CLOSED Here*/}
-
-
-                    {/* DOB */}
-                    <View style={{ marginLeft: 16, marginBottom: 10 }}>
-                        <Text style={[styles.textStyle, { fontSize: 16, fontWeight: "500", fontFamily: "Rubik-Medium" }]}>DOB</Text>
+                        <InputBox inputTitle="*Town" />
                     </View>
 
-                    <View style={{ flexDirection: "row", marginLeft: 10, marginBottom: 10 }}>
-                        <InputBox inputTitle="DD" customTextInputStyle={{
-                            width: wp("26%"), marginRight: 0, marginLeft: 0
-                        }} />
-                        <InputBox inputTitle="MM" customTextInputStyle={{ width: wp("26%"), marginLeft: 0, marginRight: 0 }} />
-                        <InputBox inputTitle="YY/YY" customTextInputStyle={{ width: wp("29%"), marginLeft: 0, marginRight: 0 }} />
-                    </View>
+                    {/* TownClosed */}
 
+
+                    {/* Input Box PostCode*/}
                     <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                        <InputBox inputTitle="Password" />
+                        <InputBox inputTitle="*Post Code" />
+                    </View>
+                    {/* Input Box PostCode CLOSED Here*/}
+
+
+                    {/* Input Box Region*/}
+                    <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
+                        <InputBox inputTitle="*Region" />
+                    </View>
+                    {/* Input Box Region CLOSED Here*/}
+
+
+                    {/* Terms and Conditions */}
+
+
+                    <View style={{ flexDirection: "row", alignContent: "center", alignItems: "center" }}>
+                        {/* <Checkbox
+                            status={checked ? 'checked' : 'unchecked'}
+                            // status={'indeterminate}
+                            uncheckedColor={"#717990"}
+                            color={checked ? "#4E21C9" : '#fff'}
+                            onPress={() => {
+                                setChecked(!checked);
+                            }}
+                            theme={{}}
+                        /> */}
+
+                        <CheckBox
+                            disabled={false}
+                            value={toggleCheckBox}
+                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                            tintColors={{ true: "#717990", false: "#717990" }}
+                            style={{ marginLeft: 20 }}
+                        />
+                        {/* onCheckColor */}
+                        <Text style={{ color: "#717990", fontSize: 12, fontFamily: "Rubik-Regular" }}>
+                            I agree to the T&Cs and confirm I am over the age of 18
+                        </Text>
                     </View>
 
-                    < View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                        <InputBox inputTitle="Confirm Password" secureText={true} />
-                    </View>
+
+                    {/* Terms and Conditions */}
 
                     {/* Next Step */}
 
-                    < SimpleButton title="Next Step" />
+                    < SimpleButton title="Register" />
 
                     {/* Next Step CLOSE */}
 
