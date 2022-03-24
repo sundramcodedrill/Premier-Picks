@@ -1,16 +1,35 @@
 import { ScrollView, StyleSheet, TouchableOpacity, TextInput, Text, View, KeyboardAvoidingView, ImageBackground, Image, Dimensions, Input, FormInput } from 'react-native'
 import { Header, SimpleButton, InputBox, AccountTexts } from '../../components/Index'
 import { RegisterBackground, Progress, Vector } from '../../assets/Images/index'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import CheckBox from '@react-native-community/checkbox';
 // import { Checkbox } from 'react-native-paper';
+
 const RegisterTwo = (props) => {
 
-    const [data, setData] = useState("")
-    const [checked, setChecked] = useState(false);
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    // const [data, setData] = useState("")
+    // const [checked, setChecked] = useState(false);
+    const [toggleCheckBox, setToggleCheckBox] = useState(true)
+    const [HouseNumber, setHouseNumber] = useState("")
+    const [Street, setStreet] = useState("")
+    const [Town, setTown] = useState("")
+    const [PostalCode, setPostalCode] = useState("")
+    const [Region, setRegion] = useState("")
+    const [registerButton, setregisterButton] = useState(true)
+    const [r2Button, setr2Button] = useState(true)
+
+    useEffect(() => {
+
+        if (toggleCheckBox == true) {
+            setr2Button(false)
+        }
+
+    }, [toggleCheckBox])
+
+    console.log(toggleCheckBox, '---------------->checkBox value')
+
     return (
         // Main View Started
 
@@ -66,19 +85,31 @@ const RegisterTwo = (props) => {
 
                     { /* House Number*/}
                     <View style={{ marginBottom: 10 }}>
-                        <InputBox inputTitle="*House Number" />
+                        <InputBox
+                            inputTitle="*House Number"
+                            value={HouseNumber}
+                            onChange={(data) => { setHouseNumber(data) }}
+                        />
                     </View>
                     {/* Input Box *House Number CLOSED Here*/}
 
                     {/* Input Box Street Name*/}
                     <View style={{ marginBottom: 10 }}>
-                        <InputBox inputTitle="*Street" />
+                        <InputBox
+                            inputTitle="*Street"
+                            value={Street}
+                            onChange={(data) => { setStreet(data) }}
+                        />
                     </View>
                     {/* Input Box Street CLOSED Here*/}
 
                     {/* Town */}
                     <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                        <InputBox inputTitle="*Town" />
+                        <InputBox
+                            inputTitle="*Town"
+                            value={Town}
+                            onChange={(data) => { setTown(data) }}
+                        />
                     </View>
 
                     {/* TownClosed */}
@@ -86,14 +117,22 @@ const RegisterTwo = (props) => {
 
                     {/* Input Box PostCode*/}
                     <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                        <InputBox inputTitle="*Post Code" />
+                        <InputBox
+                            inputTitle="*Post Code"
+                            value={PostalCode}
+                            onChange={(data) => { setPostalCode(data) }}
+                        />
                     </View>
                     {/* Input Box PostCode CLOSED Here*/}
 
 
                     {/* Input Box Region*/}
                     <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                        <InputBox inputTitle="*Region" />
+                        <InputBox
+                            inputTitle="*Region"
+                            value={Region}
+                            onChange={(data) => { setRegion(data) }}
+                        />
                     </View>
                     {/* Input Box Region CLOSED Here*/}
 
@@ -131,7 +170,10 @@ const RegisterTwo = (props) => {
 
                     {/* Next Step */}
 
-                    < SimpleButton title="Register" />
+                    < SimpleButton
+                        title="Register"
+                        disableStatus={!toggleCheckBox}
+                    />
 
                     {/* Next Step CLOSE */}
 
@@ -141,7 +183,7 @@ const RegisterTwo = (props) => {
                         props.navigation.navigate('Login')
                     }} />
 
-                    <View style={{ marginBottom: 250 }}>
+                    <View style={{ marginBottom: 350 }}>
                     </View>
 
                 </ScrollView >

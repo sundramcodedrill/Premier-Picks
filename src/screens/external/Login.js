@@ -5,8 +5,25 @@ import InputBox from '../../components/InputBox'
 import SimpleButton from '../../components/Button'
 import Header from '../../components/Header'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { useState, useEffect } from 'react'
 
 const Login1 = (props) => {
+
+
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
+    const [activeButton, setActiveButton] = useState(true)
+
+
+
+
+
+    useEffect(() => {
+        //console.log(login, typeof login, "<----length")
+        if (login.length > 5 && password.length > 4) {
+            setActiveButton(false)
+        }
+    }, [login, password])
 
     return (
         // <KeyboardAvoidingView style={{ flex: 1, }} keyboardVerticalOffset={50} >
@@ -14,34 +31,37 @@ const Login1 = (props) => {
         <KeyboardAvoidingView style={{ flex: 1, color: 'red' }}>
             <Header />
             <ScrollView >
-                <View style={{ flex: 1, backgroundColor: 'red' }}>
-                    <ImageBackground source={BACKGROUNDIMAGE1} style={{ width: wp('100%'), height: hp('100%'), color: 'red' }}  >
+                <View style={{ flex: 1 }}>
+                    <ImageBackground source={BACKGROUNDIMAGE1} style={{ width: wp('100%'), height: hp('100%'), }}  >
                         <View style={{ marginTop: hp("14%"), }}>
                             <Text style={[styles.textStyle, { fontSize: 26, fontWeight: "500", margin: hp("5%") }]}>Login</Text>
 
-                            <InputBox inputTitle={"Username/Email"} />
+                            <InputBox inputTitle={"Username/Email"} value={login} onChange={(data) => { setLogin(data) }} />
 
                             <InputBox
                                 inputTitle={"Password"}
                                 icon={<svg data-testid="DeleteIcon"></svg>}
+                                onChange={(data) => { setPassword(data) }}
+                                value={password}
                             />
 
                             <Text style={[styles.textStyle, { marginTop: 25, marginBottom: 15, fontSize: 14, color: "#FFB700", }]}  > Forget Password</Text>
 
                             <SimpleButton
-                                buttonStyle={[styles.simpleButton, {}]}
+                                // buttonStyle={{ backgroundColor: { color } }}
                                 titleStyle={[styles.buttonTitle]}
                                 onPress={() => { console.log("Hello") }} title="Login"
-                                disableStatus={true}
+                                disableStatus={activeButton}
                             />
                             <SimpleButton
-                                buttonStyle={[styles.simpleButton]}
+                                //buttonStyle={[styles.simpleButton]}
                                 titleStyle={[styles.buttonTitle]}
                                 onPress={() => {
                                     console.log("Hello")
                                 }}
                                 title="Login with face ID"
-                                disableStatus={true}
+                                disableStatus={false}
+
                             />
                             <Text style={
                                 [styles.textStyle, { fontFamily: "Spartan-Medium", color: "#717990" }]
@@ -53,7 +73,11 @@ const Login1 = (props) => {
                                     Register
                                 </Text>
                             </Text>
+                            <View style={{ marginBottom: 500 }}>
+                            </View>
+
                         </View>
+
                     </ImageBackground>
                 </View>
             </ScrollView>

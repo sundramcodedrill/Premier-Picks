@@ -2,14 +2,38 @@ import { ScrollView, StyleSheet, TextInput, Text, View, KeyboardAvoidingView, Im
 // import { Header, SimpleButton, InputBox } from '../../components'
 import { Header, SimpleButton, InputBox, AccountTexts } from '../../components/Index'
 import { RegisterBackground, Progress, Vector } from '../../assets/Images/index'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const Register = (props) => {
 
-    const [data, setData] = useState("")
-    const [borderColorHook, setBorderColorHook] = useState("#ff0011")
+
+    const [firstname, setfirstname] = useState('')
+    const [lastname, setlastname] = useState('')
+    const [username, setusername] = useState('')
+    const [email, setemail] = useState('')
+    const [dd, setdd] = useState(0)
+    const [mm, setmm] = useState(0)
+    const [yyyy, setyyyy] = useState(0)
+    const [Rpassword, setRpassword] = useState('')
+    const [rConfirmPassword, setrConfirmPassword] = useState('')
+    const [ractiveButton, setrActiveButton] = useState(true)
+
+    //&& lastname.length > 0 && username.length > 0 && email.length > 0 && dd > 0 && yyyy.toString() > 3 && mm > 0 && Rpassword > 0 && rConfirmPassword > 0
+    // , lastname, username, email, dd, yyyy, mm, Rpassword, rConfirmPassword
+
+
+
+    useEffect(() => {
+        //console.log(login, typeof login, "<----length")
+        if (rConfirmPassword.length > 0) {
+            setrActiveButton(false)
+        } else {
+            setrActiveButton(true)
+        }
+    }, [rConfirmPassword])
+
     return (
         // Main View Started
 
@@ -23,7 +47,7 @@ const Register = (props) => {
                 <Header />
 
                 <ScrollView>
-                    <KeyboardAwareScrollView style={{ backgroundColor: 'transparent' }} >
+                    <KeyboardAwareScrollView >
 
                         {/* Registeration Title View */}
                         <View style={{ margin: 15, }}>
@@ -64,22 +88,49 @@ const Register = (props) => {
 
                         {/* Input Box First Name*/}
                         <View style={{ marginBottom: 10 }}>
-                            <InputBox inputTitle="First Name" />
+                            <InputBox
+                                inputTitle="First Name"
+                                onChange={(data) => { setfirstname(data) }}
+                                value={firstname}
+                            />
                         </View>
                         {/* Input Box  CLOSED Here*/}
 
                         {/* Input Box Last Name*/}
                         <View style={{ marginBottom: 10 }}>
-                            <InputBox inputTitle="Last Name" />
+                            <InputBox
+                                inputTitle="Last Name"
+                                onChange={(data) => { setlastname(data) }}
+                                value={lastname}
+                            />
                         </View>
                         {/* Input Box Last Name CLOSED Here*/}
 
 
+
                         {/* Input Box UserName*/}
                         <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                            <InputBox inputTitle="User Name" />
+                            <InputBox
+                                inputTitle="User Name"
+                                onChange={(data) => { setusername(data) }}
+                                value={username}
+                            />
                         </View>
                         {/* Input Box UserName CLOSED Here*/}
+
+                        {/*  */}
+
+                        <View style={{ marginBottom: 10 }}>
+                            <InputBox
+                                inputTitle="Email"
+                                onChange={(data) => { setemail(data) }}
+                                value={email}
+                            />
+                        </View>
+
+                        {/*  */}
+
+
 
                         {/* DOB */}
                         <View style={{ marginLeft: 16, marginBottom: 10 }}>
@@ -87,24 +138,61 @@ const Register = (props) => {
                         </View>
 
                         <View style={{ flexDirection: "row", marginLeft: 10, marginBottom: 10 }}>
-                            <InputBox inputTitle="DD" customTextInputStyle={{
-                                width: wp("26%"), marginRight: 0, marginLeft: 0
-                            }} />
-                            <InputBox inputTitle="MM" customTextInputStyle={{ width: wp("26%"), marginLeft: 0, marginRight: 0 }} />
-                            <InputBox inputTitle="YY/YY" customTextInputStyle={{ width: wp("29%"), marginLeft: 0, marginRight: 0 }} />
+                            <InputBox
+                                inputTitle="DD"
+                                keyboardType="numeric"
+                                customTextInputStyle={{
+                                    width: wp("26%"), marginRight: 0, marginLeft: 0
+                                }}
+                                onChange={(data) => { setdd(data) }}
+                                value={dd}
+                            />
+
+                            <InputBox
+                                inputTitle="MM"
+                                keyboardType="numeric"
+                                customTextInputStyle={{
+                                    width: wp("26%"), marginLeft: 0, marginRight: 0
+                                }}
+                                onChange={(data) => { setmm(data) }}
+                                value={mm}
+                            />
+
+                            <InputBox
+                                inputTitle="YY/YY"
+                                keyboardType="numeric"
+                                customTextInputStyle={{
+                                    width: wp("29%"), marginLeft: 0, marginRight: 0
+                                }}
+                                onChange={(data) => { setyyyy(data) }}
+                                value={yyyy}
+                            />
                         </View>
 
                         <View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                            <InputBox inputTitle="Password" />
+                            <InputBox
+                                inputTitle="Password"
+                                onChange={(data) => { setRpassword(data) }}
+                                value={Rpassword}
+                                secureText={false}
+                            />
                         </View>
 
                         < View style={{ marginBottom: 10, justifyContent: "center", alignItems: "center" }}>
-                            <InputBox inputTitle="Confirm Password" secureText={true} />
+                            <InputBox
+                                inputTitle="Confirm Password"
+                                onChange={(data) => { setrConfirmPassword(data) }}
+                                value={rConfirmPassword}
+                                secureText={false} />
                         </View>
 
                         {/* Next Step */}
 
-                        < SimpleButton title="Next Step" onPress={() => (props.navigation.navigate("RegisterStep2"))} />
+                        < SimpleButton
+                            title="Next Step"
+                            onPress={() => (props.navigation.navigate("RegisterStep2"))}
+                            disableStatus={ractiveButton}
+                        />
 
                         {/* Next Step CLOSE */}
 
@@ -114,7 +202,7 @@ const Register = (props) => {
                             props.navigation.navigate('Login')
                         }} />
 
-                        <View style={{ marginBottom: 250 }}>
+                        <View style={{ marginBottom: 450 }}>
                         </View>
 
 

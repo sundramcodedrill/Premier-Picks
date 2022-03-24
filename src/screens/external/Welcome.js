@@ -29,6 +29,7 @@ const Welcome = (props) => {
                         props.navigation.navigate('Login');
                     }}
                     title="Login"
+                    disableStatus={false}
                 />
                 <SimpleButton
                     buttonStyle={[styles.simpleButton]}
@@ -36,6 +37,7 @@ const Welcome = (props) => {
                     onPress={() => {
                         props.navigation.navigate('Register');
                     }} title="Create an account"
+                    disableStatus={false}
                 />
             </ImageBackground >
         </View >

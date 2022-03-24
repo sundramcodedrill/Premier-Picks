@@ -1,38 +1,49 @@
 import { StyleSheet, View, TextInput, Text, Image, TouchableOpacity } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Show, Hide } from '../assets/Images'
 const InputBox = (props) => {
     // { }
 
 
-    const { inputTitle, disableOrNot, icon, customStyle, customTextInputStyle, secureText, showHideprop } = props
+    const { inputTitle, customStyle, customTextInputStyle, secureText, onChange, showHideprop, value, keyboardType } = props
     const [showHide, setShowHide] = useState(false)
-    const [data, setData] = useState("")
+
     const [isFocused, setIsFocused] = useState(false);
+
+    const [data, setdata] = useState('')
+
+    // const { inputTitle, disableOrNot, icon, customStyle, customTextInputStyle, secureText, showHideprop } = props
+    // const [showHide, setShowHide] = useState(true)
+    // const [data, setData] = useState("")
+    // const [isFocused, setIsFocused] = useState(false);
+    //useEffect(() => { }, [value])
+    //console.log(value.length > 5)
     return (
         <View style={[styles.container, customStyle]}>
             <View style={{ alignItems: "center", marginLeft: 8, }}>
                 <View style={{ flexDirection: "row", alignItems: 'center' }}>
                     <TextInput
-                        style={[styles.textInputStyle, customTextInputStyle, isFocused && { borderColor: "#4E21C9", color: "red" }]}
+
+                        style={[styles.textInputStyle, customTextInputStyle, isFocused && { borderColor: "#4E21C9", color: "#ffff" }]}
                         keyboardAppearance="dark"
                         secureTextEntry={inputTitle == "Password" || inputTitle == "Confirm Password" ? showHide : false}
-                        value={data}
+                        value={value}
                         selectionColor={'#4E21C9'}
-                        onChangeText={(data) => { setData(data) }}
+                        onChangeText={onChange}
                         onFocus={() => {
                             setIsFocused(true)
                         }}
+                        keyboardType={keyboardType ? 'numeric' : 'default'}
                         onBlur={() => { setIsFocused(false) }}
                     />
-                    {inputTitle == "Password" || inputTitle == "Confirm Password" ?
+                    {(inputTitle == "Password" || inputTitle == "Confirm Password") && value.length >= 1 ?
 
                         <TouchableOpacity onPress={() => setShowHide(!showHide)}
                             style={{ padding: 10, position: 'absolute', right: 20, zIndex: 1 }}
                         >
-                            <Image style={{}} source={showHide ? Hide : Show} resizeMode='contain' />
+                            <Image source={(showHide) ? Hide : Show} resizeMode='contain' />
                         </TouchableOpacity> : null
                     }
                 </View>
