@@ -1,10 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Image, Text, View } from 'react-native'
 import React from 'react'
 
-const MovieDetails = (props) => {
+const MovieDetails = ({ route: { params } }) => {
+    console.log("params------------------>", params)
+
+    const { imageUser, userName } = params
     return (
-        <View>
-            <Text></Text>
+        <View style={{ flex: 1, alignItems: "center" }}>
+            <Image source={{ uri: imageUser }} style={{
+                height: 400, width: 400, borderRadius: 500
+            }} />
+            <Text style={{ fontSize: 28 }}>
+                {userName}
+            </Text>
         </View>
     )
 }

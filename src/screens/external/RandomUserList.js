@@ -1,4 +1,4 @@
-import { StyleSheet, Button, Text, View, FlatList, TouchableOpacity, ImageBackground } from 'react-native'
+import { ScrollView, ActivityIndicator, StyleSheet, Button, Image, Text, View, FlatList, TouchableOpacity, ImageBackground } from 'react-native'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import SimpleButton from '../../components/Button'
@@ -8,32 +8,38 @@ import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsi
 
 const RandomUserList = (props) => {
 
+    const [refreshing, setRefreshing] = React.useState(false);
 
-    // const DATA = [
-    //     {
-    //         id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    //         title: "First Item",
-    //     },
-    //     {
-    //         id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    //         title: "Second Item",
-    //     },
-    //     {
-    //         id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    //         title: "Third Item",
-    //     },
-    // ];
 
     const Item = ({ item, onPress, textColor }) => (
-        <TouchableOpacity onPress={onPress} style={{ backgroundColor: "#4E61C9", padding: 10, borderColor: "black", borderWidth: 2, margin: 15 }}>
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                <Text style={{ color: "white" }}>{item.id}</Text>
-                <Text style={{ color: "white" }}>{item.title}</Text>
-                <Text style={{ color: "white" }}>{item.releaseYear}</Text>
-            </View>
-        </TouchableOpacity>
+        <ScrollView >
+            <TouchableOpacity fullImage={item.picture.large} onPress={() => { props.navigation.navigate("MovieDetails", { imageUser: item.picture.large, userName: item.name.first }) }} style={{ backgroundColor: "#4E61C9", padding: 10, borderColor: "black", borderWidth: 0.5, margin: 15 }}>
+                <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
+                    <Image
+                        style={{
+                            width: 75,
+                            height: 75,
+                        }}
+                        source={{
+                            uri: item.picture.thumbnail,
+                        }}
+                    />
+                    <View>
+                        <Text style={{ color: "white" }}>    {item.name.first}</Text>
+                        <Text style={{ color: "white" }}>    {item.gender}</Text>
+                        <Text style={{ color: "white" }}>    {item.email}</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+
+        </ScrollView>
+
     );
 
+
+    const handleRefresh = () => {
+        getApiData();
+    }
 
     const [selectedId, setSelectedId] = useState(null);
 
@@ -67,13 +73,19 @@ const RandomUserList = (props) => {
 
 
     async function getApiData() {
-        await axios.get("https://reactnative.dev/movies.json")
+        setRefreshing(true)
+        await axios.get("https://randomuser.me/api/?results=20")
             .then((response) => {
-                let str = (response.data.movies)
+                let str = (response.data.results)
                 setResp(str)
                 console.log(str)
+                setRefreshing(false);
             })
-            .catch(error => console.error(`Error------->${error}`))
+            .catch((error) => {
+                console.error(`Error------->${error}`)
+                setRefreshing(true);
+            }
+            )
     }
 
     return (
@@ -83,17 +95,23 @@ const RandomUserList = (props) => {
             <View style={{ justifyContent: "center", alignItems: "center" }}>
                 <Text style={{ margin: 10, fontSize: 20, backgroundColor: "#fff" }}>Fetching Data Using Axios</Text>
             </View>
+            <View style={{ flex: 1, justifyContent: "center" }}>
+                {
+                    refreshing ? <ActivityIndicator size={40} /> : <FlatList
+                        data={resp}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.login.uuid}
+                        refreshing={refreshing}
+                        onRefresh={handleRefresh}
+                    //refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                    />
+                }
 
-            <FlatList
-                data={resp}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-            
+            </View>
+
+
             <SimpleButton title="Back To Login" onPress={() => (
                 props.navigation.navigate("Login"))} />
-
-
 
             {/* </ImageBackground> */}
         </View>

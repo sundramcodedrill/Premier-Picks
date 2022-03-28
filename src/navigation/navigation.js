@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator, cardStyleInterpolator, CardStyleInterpolators } from '@react-navigation/stack';
-import { Welcome, Splash, Register, RegisterTwo, Login, MyList, RandomUserList } from '../screens'
+import { Welcome, Splash, Register, RegisterTwo, Login, MyList, RandomUserList, MovieDetails } from '../screens'
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -117,12 +117,15 @@ const Navigation = (props) => {
             <Stack.Screen name='Login' component={Login} options={(route) => ({
 
             })} /> */}
+
             <Stack.Screen name='Splash' component={Splash} />
             <Stack.Screen name='Welcome' component={Welcome} />
             <Stack.Screen name='Login' component={Login} />
             <Stack.Screen name='Register' component={Register} />
             <Stack.Screen name='RegisterStep2' component={RegisterTwo} />
             <Stack.Screen name='RandomUserList' component={RandomUserList} />
+
+            <Stack.Screen name='MovieDetails' component={MovieDetails} />
 
         </Stack.Navigator >
     )
