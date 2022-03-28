@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, KeyboardAvoidingView, ImageBackground } from 'react-native'
+import { ScrollView, StyleSheet, Text, Button, View, KeyboardAvoidingView, ImageBackground, Alert } from 'react-native'
 import React from 'react'
 import { BACKGROUNDIMAGE1 } from '../../assets/Images'
 import InputBox from '../../components/InputBox'
@@ -14,9 +14,19 @@ const Login1 = (props) => {
     const [password, setPassword] = useState('')
     const [activeButton, setActiveButton] = useState(true)
 
-
-
-
+    const validation = () => {
+        let regexEmail = new RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$')
+        let regexPassword = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
+        if (regexEmail.test(login) == true) {
+            if (regexPassword.test(password) == true) {
+                Alert.alert('Valid Password')
+            } else {
+                Alert.alert('Invalid Password ')
+            }
+        } else {
+            Alert.alert('Invalid Email or Password ')
+        }
+    }
 
     useEffect(() => {
         //console.log(login, typeof login, "<----length")
@@ -28,7 +38,7 @@ const Login1 = (props) => {
     return (
         // <KeyboardAvoidingView style={{ flex: 1, }} keyboardVerticalOffset={50} >
 
-        <KeyboardAvoidingView style={{ flex: 1, color: 'red' }}>
+        <KeyboardAvoidingView style={{ flex: 1 }}>
             <Header />
             <ScrollView >
                 <View style={{ flex: 1 }}>
@@ -50,15 +60,14 @@ const Login1 = (props) => {
                             <SimpleButton
                                 // buttonStyle={{ backgroundColor: { color } }}
                                 titleStyle={[styles.buttonTitle]}
-                                onPress={() => { console.log("Hello") }} title="Login"
+                                onPress={(login, password) => { validation(login, password) }}
+                                title="Login"
                                 disableStatus={activeButton}
                             />
                             <SimpleButton
                                 //buttonStyle={[styles.simpleButton]}
                                 titleStyle={[styles.buttonTitle]}
-                                onPress={() => {
-                                    console.log("Hello")
-                                }}
+                                onPress={() => { }}
                                 title="Login with face ID"
                                 disableStatus={false}
 
@@ -73,11 +82,12 @@ const Login1 = (props) => {
                                     Register
                                 </Text>
                             </Text>
+
+                            <Button title='Back To List' style={styles.button} onPress={() => { props.navigation.navigate("RandomUserList") }} />
                             <View style={{ marginBottom: 500 }}>
                             </View>
 
                         </View>
-
                     </ImageBackground>
                 </View>
             </ScrollView>
@@ -99,6 +109,20 @@ const styles = StyleSheet.create({
         fontSize: 14,
         // marginTop: 100
     },
+    button: {
+        backgroundColor: "#4E21C9",
+        justifyContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "center",
+        margin: 8,
+        borderRadius: 5,
+        width: wp('90%'),
+        height: hp('6%')
+    },
 
+    buttontitle: {
+        color: "#FFFFFF", fontSize: 16, fontWeight: "bold", fontFamily: "Spartan-Regular"
+    }
 
 })
